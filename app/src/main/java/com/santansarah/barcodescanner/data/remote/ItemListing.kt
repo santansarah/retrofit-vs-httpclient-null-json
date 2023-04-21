@@ -10,3 +10,11 @@ data class ItemListing(
     val status: Int,
     @SerialName("status_verbose") val statusVerbose: String
 )
+
+@Serializable
+data class ItemListingRetrofit(
+    val code: String,
+    val product: ProductRetrofit? = null,
+    val status: Int,
+    @SerialName("status_verbose") val statusVerbose: String
+)

@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.santansarah.barcodescanner.data.remote.FoodApi
 import com.santansarah.barcodescanner.data.remote.ItemListing
+import com.santansarah.barcodescanner.data.remote.formatToGrams
 import com.santansarah.barcodescanner.ui.theme.BarcodeScannerTheme
 import com.santansarah.barcodescanner.ui.theme.primary
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,21 +47,23 @@ class MainActivity : ComponentActivity() {
                      */
 
                     /*runBlocking {
-                        val itemResponse = ktorClient.use { client ->
-                            client.get("https://us.openfoodfacts.org/api/v2/product/0078742366951") {
-                                parameter("fields", "brands,nutriments")
-                            }
-                        }.body<String>()
-                        println(itemResponse)
+                        val stringResponse = foodApi.getInfoByBarCodeString()
+                        println(stringResponse.string())
+                    }*/
+
+                    /*runBlocking {
+                        val itemListing = foodApi.getInfoByBarCode(
+                            barCode = "0078742366951", fields = "brands,nutriments"
+                        )
+                        println(itemListing.toString())
                     }*/
 
                     runBlocking {
-                        val itemResponse = ktorClient.use { client ->
-                            client.get("https://us.openfoodfacts.org/api/v2/product/0078742366951") {
-                                parameter("fields", "brands,nutriments")
-                            }
-                        }.body<ItemListing>()
-                        println(itemResponse)
+                        val itemListing = foodApi.getInfoByBarCodeRetrofit(
+                            barCode = "0078742366951", fields = "brands,nutriments"
+                        )
+                        println(itemListing.toString())
+                        println(itemListing.product?.nutriments?.carbohydrates.formatToGrams() + "g")
                     }
 
                 }

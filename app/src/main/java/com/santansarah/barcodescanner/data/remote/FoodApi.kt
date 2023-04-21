@@ -16,14 +16,18 @@ interface FoodApi {
 
 
     @Headers("Accept: application/json")
-    @GET("https://us.openfoodfacts.org/api/v2/product/0078742366951?fields=brands%2Cnutriments;nocache=1")
+    @GET("https://us.openfoodfacts.org/api/v2/product/0078742366951?fields=brands%2Cnutriments")
     suspend fun getInfoByBarCodeString(): ResponseBody
 
 
     @GET("product/{barCode}")
     suspend fun getInfoByBarCode(
-        @Header("Authorization") authorization: String = basic,
         @Path("barCode") barCode: String,
         @Query("fields") fields: String): ItemListing
+
+    @GET("product/{barCode}")
+    suspend fun getInfoByBarCodeRetrofit(
+        @Path("barCode") barCode: String,
+        @Query("fields") fields: String): ItemListingRetrofit
 
 }

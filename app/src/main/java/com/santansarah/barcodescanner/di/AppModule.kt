@@ -6,6 +6,7 @@ import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.santansarah.barcodescanner.data.remote.FoodApi
 import com.santansarah.barcodescanner.domain.OFFAPI
 import dagger.Module
@@ -74,14 +75,7 @@ object AppModules {
         val jsonBuilder = Json {
             ignoreUnknownKeys = true
             prettyPrint = true
-            explicitNulls = false
         }
-
-        val gson: Gson = GsonBuilder()
-            //.serializeNulls()
-            .setPrettyPrinting()
-            .create()
-
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -95,9 +89,8 @@ object AppModules {
 
         return Retrofit.Builder()
             .baseUrl(OFFAPI)
-            /*.addConverterFactory(jsonBuilder
-                .asConverterFactory(contentType))*/
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(jsonBuilder
+                .asConverterFactory(contentType))
             .client(client)
             .build()
             .create(FoodApi::class.java)
