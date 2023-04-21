@@ -43,9 +43,15 @@ codescanner = {module = "com.google.android.gms:play-services-code-scanner", ver
 hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
 hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "daggerHilt" }
 hiltCompose = { module= "androidx.hilt:hilt-navigation-compose", version.ref="hiltNavigationCompose"}
+
+# Here are my retrofit dependencies. I'm using kotlinx serialization, so I added the
+# retrofit2 converter.
+
 retrofit = {module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit"}
 jakeSerialization = {module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref="jakewhartonRetrofit"}
 kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
+
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 coil = {module = "io.coil-kt:coil-compose", version.ref = "coil"}
 coilBase = {module = "io.coil-kt:coil-base", version.ref = "coil"}

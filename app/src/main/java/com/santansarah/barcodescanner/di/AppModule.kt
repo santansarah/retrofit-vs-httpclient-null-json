@@ -45,29 +45,6 @@ object AppModules {
     @IoDispatcher
     fun provideIoDispatcher() = Dispatchers.IO
 
-    @Provides
-    fun provideKtorClient() = HttpClient(Android) {
-        engine {
-            connectTimeout = 3000
-        }
-        expectSuccess = true
-        install(Logging) {
-            logger = object : Logger {
-                override fun log(message: String) {
-                    Timber.tag("HTTP Client").d(message)
-                }
-            }
-            level = LogLevel.ALL
-        }
-        install(ContentNegotiation) {
-            json(Json {
-                ignoreUnknownKeys = true
-                prettyPrint = true
-                isLenient = true
-            })
-        }
-    }
-
     @OptIn(ExperimentalSerializationApi::class)
     @Provides
     fun provideRetrofit(): FoodApi {
@@ -94,23 +71,6 @@ object AppModules {
             .build()
             .create(FoodApi::class.java)
     }
-
-    @Provides
-    fun provideImageLoader(@ApplicationContext context: Context): ImageLoader =
-        ImageLoader.Builder(context)
-            .crossfade(true)
-            .memoryCache {
-                MemoryCache.Builder(context)
-                    .maxSizePercent(0.25)
-                    .build()
-            }
-            .diskCache {
-                DiskCache.Builder()
-                    .directory(context.cacheDir.resolve("image_cache"))
-                    .maxSizePercent(0.02)
-                    .build()
-            }
-            .build()
 
 }
 

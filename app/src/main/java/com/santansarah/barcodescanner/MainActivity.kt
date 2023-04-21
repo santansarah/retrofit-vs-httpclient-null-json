@@ -26,9 +26,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var foodApi: FoodApi
 
-    @Inject
-    lateinit var ktorClient: HttpClient
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,10 +39,14 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     /**
+                     * In this example, I'm getting back the incomplete nutrition information
+                     * for cashews.
+                     *
                      * Product: https://world.openfoodfacts.org/product/0078742366951/halves-pieces-great-value
                      * vs a complete profile: https://world.openfoodfacts.org/product/0029000016071/cashew-halves-pieces-planters
                      */
 
+                    // First, let's just get the string body response.
                     runBlocking {
                         val stringResponse = foodApi.getInfoByBarCodeString()
                         println(stringResponse.string())
