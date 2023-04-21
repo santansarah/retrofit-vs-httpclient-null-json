@@ -74,7 +74,6 @@ object AppModules {
         val contentType: MediaType = "application/json".toMediaType()
         val jsonBuilder = Json {
             ignoreUnknownKeys = true
-            prettyPrint = true
         }
 
         val interceptor = HttpLoggingInterceptor()

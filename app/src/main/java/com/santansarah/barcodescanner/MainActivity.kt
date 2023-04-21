@@ -46,10 +46,10 @@ class MainActivity : ComponentActivity() {
                      * vs a complete profile: https://world.openfoodfacts.org/product/0029000016071/cashew-halves-pieces-planters
                      */
 
-                    /*runBlocking {
+                    runBlocking {
                         val stringResponse = foodApi.getInfoByBarCodeString()
                         println(stringResponse.string())
-                    }*/
+                    }
 
                     /*runBlocking {
                         val itemListing = foodApi.getInfoByBarCode(
@@ -58,13 +58,13 @@ class MainActivity : ComponentActivity() {
                         println(itemListing.toString())
                     }*/
 
-                    runBlocking {
+                    /*runBlocking {
                         val itemListing = foodApi.getInfoByBarCodeRetrofit(
                             barCode = "0078742366951", fields = "brands,nutriments"
                         )
                         println(itemListing.toString())
                         println(itemListing.product?.nutriments?.carbohydrates.formatToGrams() + "g")
-                    }
+                    }*/
 
                 }
             }
