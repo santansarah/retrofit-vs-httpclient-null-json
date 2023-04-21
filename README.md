@@ -57,7 +57,7 @@ response - this is without serializing the body to a data class:
 ```json
 {"code":"0078742366951","product":{"brands":"Great Value",
   "nutriments":{"carbohydrates":33.333333333333,"carbohydrates_100g":33.333333333333,
-    "carbohydrates_serving":"","carbohydrates_unit":"g","carbohydrates_value":33.333333333333,
+    "carbohydrates_serving":"","carbohydrates_unit":"g","carbohydrates_value":33.333333333333
     }},"status":1,"status_verbose":"product found"}
 ```
 
