@@ -51,14 +51,29 @@ Now, here's the response from a different product. For this one, there _is_ no
 }
 ```
 
-The response in HttpClient is the same for both products, but in Retrofit, I get this:
+The response using HttpClient is the same for both products, but in Retrofit, I get this string
+response - this is without serializing the body to a data class:
 
 ```json
-
+{"code":"0078742366951","product":{"brands":"Great Value",
+  "nutriments":{"carbohydrates":33.333333333333,"carbohydrates_100g":33.333333333333,
+    "carbohydrates_serving":"","carbohydrates_unit":"g","carbohydrates_value":33.333333333333,
+    }},"status":1,"status_verbose":"product found"}
 ```
 
-So how do we handle this? The answer for me was actually different based on my API client. I prefer
+Here, `"carbohydrates_serving":""` is an empty string! Now we have 3 scenarios:
+
+* Carbs per serving returns a number, like 9, or 26
+* or, it's completely missing from the JSON response
+* or finally, it could be set to an empty string
+
+So how do we handle this? The answer for me was different based on my API client. I prefer
 using Ktor's HttpClient in my projects, but for my latest one, I switched back to Retrofit just to 
 get some variety in my life. So here's what I found out while building my app, and I'll take you
 along on the journey. 
 
+First, I'll go over a Ktor HttpClient setup, then, I'll go over Retrofit. Here are the corresponding
+branches if you want to take a look:
+
+https://github.com/santansarah/retrofit-vs-httpclient-null-json/tree/ktor_httpclient
+https://github.com/santansarah/retrofit-vs-httpclient-null-json/tree/retrofit
