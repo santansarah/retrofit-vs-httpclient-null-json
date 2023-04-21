@@ -61,19 +61,20 @@ response - this is without serializing the body to a data class:
     }},"status":1,"status_verbose":"product found"}
 ```
 
-Here, `"carbohydrates_serving":""` is an empty string! Now we have 3 scenarios:
+Here, `"carbohydrates_serving":""` is an empty string! 😵‍💫🤪🤔 
+Now we have 3 scenarios:
 
 * Carbs per serving returns a number, like 9, or 26
 * or, it's completely missing from the JSON response
-* or finally, it could be set to an empty string
+* and finally, it could be set to an empty string
 
-So how do we handle this? The answer for me was different based on my API client. I prefer
-using Ktor's HttpClient in my projects, but for my latest one, I switched back to Retrofit just to 
-get some variety in my life. So here's what I found out while building my app, and I'll take you
-along on the journey. 
+So how do we handle this in our apps? The answer for me was different based on my API client. 
+I prefer using Ktor's HttpClient in my projects, but for my latest one, I switched back to Retrofit 
+just to get some variety in my life. So here's what I ran into while building my latest app, and 
+I'll take you along on the journey. 
 
 First, I'll go over a Ktor HttpClient setup, then, I'll go over Retrofit. Here are the corresponding
-branches if you want to take a look:
+branches if you want to follow along:
 
 https://github.com/santansarah/retrofit-vs-httpclient-null-json/tree/ktor_httpclient
 https://github.com/santansarah/retrofit-vs-httpclient-null-json/tree/retrofit
