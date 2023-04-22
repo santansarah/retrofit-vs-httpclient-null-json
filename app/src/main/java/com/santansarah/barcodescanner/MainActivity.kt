@@ -23,9 +23,6 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var foodApi: FoodApi
-
-    @Inject
     lateinit var ktorClient: HttpClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,23 +42,23 @@ class MainActivity : ComponentActivity() {
                      * vs a complete profile: https://world.openfoodfacts.org/product/0029000016071/cashew-halves-pieces-planters
                      */
 
-                    /*runBlocking {
+                    runBlocking {
                         val itemResponse = ktorClient.use { client ->
                             client.get("https://us.openfoodfacts.org/api/v2/product/0078742366951") {
                                 parameter("fields", "brands,nutriments")
                             }
                         }.body<String>()
                         println(itemResponse)
-                    }*/
+                    }
 
-                    runBlocking {
+                    /*runBlocking {
                         val itemResponse = ktorClient.use { client ->
                             client.get("https://us.openfoodfacts.org/api/v2/product/0078742366951") {
                                 parameter("fields", "brands,nutriments")
                             }
                         }.body<ItemListing>()
                         println(itemResponse)
-                    }
+                    }*/
 
                 }
             }
