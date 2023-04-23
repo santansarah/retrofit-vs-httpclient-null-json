@@ -5,6 +5,8 @@ different technologies. In this video, I explore the different JSON responses th
 Ktor's HttpClient vs Retrofit. I'll also go over missing JSON fields, JSON fields that can come
 back as a string or a numeric value, and how to handle nulls and defaults in our data classes.
 
+[![HttpClient vs Retrofit](https://img.youtube.com/vi/cAJChWxHvuc/0.jpg)](https://www.youtube.com/watch?v=cAJChWxHvuc)
+
 For this app, I'm using the [Open Food Facts API](https://world.openfoodfacts.org/). Their
 [GitHub Repo](https://github.com/openfoodfacts) has a ton of info if you'd like to learn more.
 
